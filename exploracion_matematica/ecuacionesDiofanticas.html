@@ -1,0 +1,195 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Clases particulares en Lleida</title>
+	<link href="../miestilo.css" rel="stylesheet" type="text/css">
+	<link rel="shortcut icon" href="../division.ico">
+
+<script>
+
+function resolver_ec_diofantica()
+{
+var a=parseInt(document.ecuaciondiofantica.a.value);
+var b=parseInt(document.ecuaciondiofantica.b.value);
+var c=parseInt(document.ecuaciondiofantica.c.value);
+if(isNaN(a)) alert("a tiene que ser una cifra");
+else if(isNaN(b)) alert("b tiene que ser una cifra");
+else if(isNaN(c)) alert("c tiene que ser una cifra");
+else{
+
+if(a==0) 
+  {
+	b= c/b;
+	alert('la solución es '+ b);
+	}
+else if(b==0)
+	{
+	a= c/a;
+	alert('la solución es '+a);
+	}
+else 
+	{
+	A=new Array(1,0,0,1);
+	var r1=a,r2=b;
+	var temp,q;
+	do
+		{
+		temp= r1%r2;
+		q= (r1-temp)/r2;
+		r1=r2;
+		r2=temp;
+		Multiplicar_por_matriz(q);
+		}while(r2!=0);
+		if(c%r1!=0) document.getElementById('Lugar de la sol. particular').innerHTML ="La ecuacion diofantica no tiene solucion alguna.";
+		else
+			{
+			var Solucion_particularx=A[0]*(c/r1);
+			var Solucion_particulary=A[1]*(c/r1);
+			document.getElementById('Lugar de la sol. particular').innerHTML ='Una solución particular es x='+Solucion_particularx+', y='+Solucion_particulary+'.';
+			}
+	}
+}
+
+}
+
+function Multiplicar_por_matriz(q)
+{
+matriz_temporal=new Array(A[2],A[3],A[0]-q*A[2],A[1]-q*A[3]);
+for(var i=0; i<=3;i++) A[i]=matriz_temporal[i];
+
+}
+
+function mcd(a,b)
+		{
+		var temp;
+		
+		if (a==0 || b==0) return Math.max(Math.abs(a), Math.abs(b));
+		
+		else {
+			if (a<b) {
+		 	 temp=a;
+	     	 a= b;
+	    	 b= temp;
+		    } 
+		
+		while(a%b!=0)
+		{
+	 temp= a%b;
+	 a= b;
+	 b= temp;
+
+		}
+
+		
+		return b;
+	   }
+	}
+	
+function mcm(a,b)
+{
+return((a*b)/mcd(a,b));
+}
+	
+function mcdymcm()
+{
+var a=parseInt(document.maximoyminimocomundivisor.a.value);
+var b=parseInt(document.maximoyminimocomundivisor.b.value);
+if(isNaN(a)) alert("a tiene que ser una cifra");
+else if(isNaN(b)) alert("b tiene que ser una cifra");
+else
+{
+var mcd1= mcd(a,b);
+var mcm1= mcm(a,b);
+
+document.getElementById('lugar del mcd y del mcm').innerHTML ='mcd('+a+','+b+')'+'='+mcd1+'<br>'+'mcm('+a+','+b+')'+'='+mcm1;
+}
+
+}
+
+
+
+
+
+
+</script>
+
+
+
+</head>
+<body>
+
+
+<div id="pagina">
+
+
+<div id="cabecera">
+<h1>Clases particulares en Lleida</h1>
+
+</div>
+
+
+
+<div id="barradivisoria"></div>
+
+<div id="pantallacompleta">
+
+<a href="../utilesdecalculo.html">»Ir atrás</a>
+<h2 class="titulo">Ecuaciones diofánticas</h2>
+
+<p>Cálculo del máximo común divisor y del mínimo común 
+múltiplo de a y b.</p>
+
+
+<form name="maximoyminimocomundivisor">
+<table>
+<tr>
+<td>Valor de a:</td>
+<td> <input type=text  name="a"  size=5 ></td>
+</tr>
+<tr>
+<td>Valor de b:</td>
+<td><input type=text  name="b"  size=5 ></td>
+</tr>
+</table>
+<br>
+<input type="button" onclick="mcdymcm();" value="Calcular">
+</form>
+<br>
+<div id="lugar del mcd y del mcm"></div>
+
+<br><br>
+
+
+
+<p>Solución particular de la ecuación diofántica</p>
+<center>ax+by=c</center></p>
+<form name="ecuaciondiofantica">
+<table>
+<tr>
+<td>Valor de a:</td>
+<td> <input type=text  name="a"  size=5 ></td>
+</tr>
+<tr>
+<td>Valor de b:</td>
+<td><input type=text  name="b"  size=5 ></td>
+</tr>
+<tr>
+<td>Valor de c:</td>
+<td><input type=text  name="c"  size=5 ></td>
+</tr>
+</table>
+<br>
+<input type="button" onclick="resolver_ec_diofantica();" value="Resolver ecuación diofántica">
+</form>
+<div id='Lugar de la sol. particular'></div>
+
+
+</div>
+
+
+<div id="pie_de_pagina"></div>
+
+</div> <!-- este div cierra página -->
+
+</body>
+</html>

@@ -1,1 +1,150 @@
-<html><head><title>mi primera página</title></head><body><h1>Hola mundo</h1></body></html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<title>Clases Particulares de Matemáticas</title>
+	<script type="text/javascript" src="javascript/texto_sigue_cursor.js"></script>
+	<script type="text/javascript" src="javascript/actualizar_la_fecha.js"></script>
+	<link href="css/miestilo.css" rel="stylesheet" type="text/css">
+	<link rel="shortcut icon" href="imagenes/division.ico">
+</head>
+<body>
+
+<div id="pagina">
+
+<div id="cabecera">
+	<h1>Clases Particulares de Matemáticas<!--Ciencias--></h1>
+</div>
+
+
+
+<div id="barradivisoria">
+	<script languaje="JavaScript">
+		escribir_fecha_del_dia_de_hoy();
+	</script>
+</div>
+
+<div id="menu">
+	<ul>
+		<li>
+			<a href='index.html'>Inicio</a>
+		</li>
+		<li>
+			<a href='carreras.html'>Carreras universitarias</a>
+		</li>
+		<li>
+			<a href='horarios.html'>Horarios de disponibilidad</a>
+		</li>
+		<li>
+			<a href='clases_online.html'>Clases on-line</a>
+		</li>
+		<li>
+			<a href='precios.html'>Precios de las clases</a>
+		</li>
+		<li>
+			<a href='taller_de_matematica_recreativa.html'>Taller de matemática recreativa</a>
+		</li>
+		<li>
+			<a href='exploracion_matematica.html'>Juegos de matemáticas</a>
+		</li>
+		<li>
+			<a href='enlaces.html'>Enlaces de interés</a>
+		</li>
+		<li>
+			<a href='contacto.html'>¿Cómo contactar?</a>
+		</li>
+
+<!--
+<li>
+<a href="registrarse.html">Zona alumnos</a>
+</li>
+
+
+<li>
+<a href="apuntes_y_videos.html">Apuntes y vídeos gratis de ciencias</a>
+</li>
+-->
+	</ul>
+</div> <!-- este div cierra menu-->
+
+<div id="contenido">
+<p>Profesor particular de matemáticas tanto a nivel escolar cómo universitario. Llevo 6 años ofreciendo refuerzo académico en carreras de la UAB y de la UDL.</p>
+<p>Grupos reducidos de máximo 3 personas.</p>
+<p>Horarios flexibles.</p>
+<p>Posibilidad de desplazamiento en toda la ciudad de Lleida.</p>
+<p>También dicto clases on-line para alumnos en cualquier localidad fuera de Lleida o busquen clases algo más económicas sin tener que desplazarse hasta mi domicilio.</p>
+<p>El pago siempre es el último día de clase de la semana y nunca por adelantado.</p>
+<p>Disponible los 365 días del año (también los fines de semana o festivos sin cargo adicional).</p>
+<p>La primera clase es gratuita y sin ningún compromiso.</p>
+<p>Filosofía y valores en mi metodología pedagógica:</p>
+<ul>
+<li>La motivación es gran parte de la clave</li>
+<li>Complementación de las clases con ejercicios para realizar en casa.</li>
+<li>Las clases están orientadas a que el alumno apruebe. Para ello me centro en:<ul>
+<li>Los contenidos y en los ejercicios de la asignatura y a poder ser en los exámenes anteriores. </li>
+<li>Resolver por adelantado las dudas más comunes de la materia</li>
+<li>Ejercitar especialmente los problemas tipo.</li>
+</ul>
+</li>
+<li>El alumno es la pieza fundamental en el aprendizaje y no al revés. El profesor es simplemente un facilitador de ese proceso. Por tanto, el alumno tiene un papel muy activo en las clases.</li>
+<li>Avanzar rápido poniendo énfasis en aquellas actividades de aprendizaje que pueden realmente aportar algo al alumno</li>
+<li>Los conceptos generales de la asignatura se ofrecen de una forma amena.</li>
+<li>Especialmente en Bachillerato y Universidad, intento sobretodo que el alumno se ejercite resolviendo problemas porque esta es la única forma de aprender de verdad  matemáticas. Esto permite ante todo tener la flexibilidad para resolver variedad de problemas e incluso los que no se ha tenido la posibilidad de enfrentarse previamente.</li>
+<li>La dificultad en el aprendizaje se debe ir imponiendo de forma gradual.</li>
+<li>Las clases solamente pueden ser realmente aprovechables en pequeños grupos.</li>
+</ul>
+<p>Links: <a href="precios.html"><em>precios</em></a>, <a href="horarios.html"><em>horarios</em></a>.</p>
+</div> <!-- este div cierra contenido-->
+
+<address id="pie_de_pagina">
+Miguel Martínez López. &nbsp; Telf. 645 023 541 &nbsp; clases_de_mates@hotmail.com
+</address>
+
+</div> <!-- este div cierra página -->
+
+<script languaje="JavaScript">
+Mensajes=new Array("1+1=0 (mod 2)","1+...+n=n(n+1)/2","sin(a+b) = sin(a)cos(b) + sin(b)cos(a)");
+numero_aleatorio= Math.floor(Math.random() * Mensajes.length); 
+
+c0             = new config();
+c0.prefix      = "y_textTail0";
+c0.updateDelay = 40;
+c0.letterspacing = 18;
+c0.message     = Mensajes[numero_aleatorio];
+c0.message     = c0.message.split("");
+c0.howmany     = parseInt(c0.message.length);
+c0.oldx = new Array();
+c0.oldy = new Array();
+c0.uid   = 0;
+for (i=0;i<c0.howmany;i++) {
+ c0.oldx[i] = 0;
+ c0.oldy[i] = -50;
+}
+for (i=0;i<c0.howmany;i++) {
+  writeLayer("<span class=\"textTail\">" + c0.message[i] + "</span>", c0.prefix + i, 0, -50);
+  setVisible(c0.prefix + i, 1);
+}
+function updatetextTail(c) {
+ c.widthBoundry = getViewWidth() - 30;
+ for (i=c.howmany-1;i>0;i--) {
+  c.oldx[i] = c.oldx[i-1] + c.letterspacing;
+  c.oldy[i] = c.oldy[i-1];
+ }
+ c.oldx[0] = cursorX + c.letterspacing;
+ c.oldy[0] = cursorY;
+ for (i=0;i<c.howmany;i++) {
+  if (c.oldx[i] >= c.widthBoundry) {
+   c.oldx[i] = c.widthBoundry;
+   setVisible(c.prefix + i, 0);
+  } else { setVisible(c.prefix + i, 1); }
+ moveLayer(c.prefix + i, c.oldx[i], c.oldy[i]);
+ }
+ setTimeout("updatetextTail(c" + c.uid + ")", c.updateDelay);
+}
+if (c0.message != "") {
+ captureXY();
+ updatetextTail(c0);
+}
+</script>
+
+</body>
+</html>

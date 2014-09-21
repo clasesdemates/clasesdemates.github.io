@@ -1,0 +1,169 @@
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<title>Clases Particulares de Matemáticas</title>
+	<link href="../css/miestilo.css" rel="stylesheet" type="text/css">
+	<link rel="../imagenes/shortcut icon" href="division.ico">
+</head>
+<body>
+
+
+<div id="pagina">
+
+
+<div id="cabecera">
+<h1>Clases particulares de Matemáticas</h1>
+
+</div>
+
+
+
+<div id="barradivisoria"></div>
+
+<div id="pantallacompleta">
+
+<a href="../ciencia_recreativa.html">»Ir atrás</a>
+
+﻿<script>
+function reverse(cadena){
+	var temp="";
+	for(var i=cadena.length-1;i>-1;--i){
+		temp+=cadena.charAt(i)
+}
+
+	return temp
+}
+
+function es_capicua(miString)
+{
+miString=miString+"";
+if(miString.length==1) return false
+else
+{
+if(miString.length %2 == 1) {
+posicion_mitad= (miString.length-1) / 2;
+mitad1 = miString.substring(0,posicion_mitad)
+ mitad2 = miString.substring(posicion_mitad+1,miString.length)
+
+ }
+else {
+
+posicion_mitad= miString.length / 2;
+mitad1 = miString.substring(0,posicion_mitad)
+mitad2 = miString.substring(posicion_mitad,miString.length)
+  
+}
+if(mitad1==reverse(mitad2)) return true
+else return false;
+}
+}
+
+function siguiente_capicua()
+{
+valor=parseInt(document.anteriorsiguientecapicua.numero.value);
+if(isNaN(valor)) alert("Hay que introducir un numero natural"); 
+else if(valor<0) alert("El valor ha de ser natural"); else
+{
+	 do{
+	 valor++;
+	 }while(!es_capicua(valor));
+	 document.anteriorsiguientecapicua.numero.value=valor;
+ 
+}
+}
+
+
+function cantidad_de_capicuas()
+{
+var cantidad=0;
+
+var a=parseInt(document.cantidadecapicuas.a.value);
+if(isNaN(a)) alert("Hay que introducir un numero natural"); 
+else if(a<0) alert("El extremo izquierdo del intervalo"); 
+var b=parseInt(document.cantidadecapicuas.b.value);
+if(isNaN(b)) alert("Hay que introducir un numero natural"); 
+else if(b<0) alert("El extremo derecho del intervalo ha de ser natural"); 
+
+for(var pasador=a; pasador<=b;pasador++) if(es_capicua(pasador)) cantidad++;
+
+
+document.getElementById('cantidad de capicuas').innerHTML ='En el intervalo comprendido entre <emph>'+a+'</emph> y <emph>'+b+'</emph> hay <i>'+cantidad+'</i> capicuas';
+
+}
+
+function anterior_capicua()
+{
+valor=parseInt(document.anteriorsiguientecapicua.numero.value);
+if(isNaN(valor)) alert("Hay que introducir un numero entero.");  
+else if(valor<=11) alert("El valor ha de ser mayor que 11");
+else{
+	 do{
+	 valor--;
+	 }while(!es_capicua(valor));
+	 document.anteriorsiguientecapicua.numero.value=valor;
+ 
+}
+}
+
+</script>
+
+<h2 class="titulo">Capicuas</h2>
+
+
+<p>Escriba en el siguiente recuadrado un número natural mayor que 11 para que apretando el botón correspondiente
+averiguar el anterior o el siguiente capicua:</p>
+
+<form name="anteriorsiguientecapicua">
+<table border=1 bordercolor=black align=center>
+
+<tr>
+<td></td>
+<td bordercolor=white><input type=text  name="numero"  size=5 ></td>
+<td></td>
+</tr>
+
+<tr>
+<td bordercolor=white>
+<input type="button" onclick="anterior_capicua();" value="Anterior capicua">
+</td>
+<td></td>
+<td bordercolor=white>
+<input type="button" onclick="siguiente_capicua();" value="Siguiente capicua"> </td>
+</tr>
+
+</table>
+</form>
+
+
+<br><br>
+<p>Para saber cuantos capicuas hay en un intervalo dado: Indique dos naturales siendo uno mayor o igual que el otro, y aprete el botón
+para saber la cantidad de capicuas entremedio, incluyendo también los extremos 
+si estos también eran capicuas.</p>
+<form name="cantidadecapicuas">
+<table>
+<tr>
+<td>Inicio del intervalo:</td>
+<td> <input type=text  name="a"  size=5 ></td>
+</tr>
+<tr>
+<td>Fin del intervalo:</td>
+<td><input type=text  name="b"  size=5 ></td>
+</tr>
+</table>
+<br>
+<input type="button" onclick="cantidad_de_capicuas();" value="Cantidad de capicuas">
+</form>
+<br>
+<div id="cantidad de capicuas"></div>
+
+
+
+</div>
+
+
+<div id="pie_de_pagina"></div>
+
+</div> <!-- este div cierra página -->
+
+</body>
+</html>

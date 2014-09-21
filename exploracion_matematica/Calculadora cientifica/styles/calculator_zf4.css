@@ -1,0 +1,129 @@
+/* Cascading Style Sheet (CSS) for Calculator 1.6 */
+body {
+    background-color: #ccc; 
+	margin: 5px; 
+	padding: 0px;
+	}
+table, tr, td, div {
+    margin: 0;
+	padding: 0px;
+	border: 0;
+    }
+
+/* style settings for buttons */
+*.button_border {
+	border: 1px solid;
+	border-color: #666 #ddd #ddd #666;
+	margin: 2px;
+	width: 36px;
+	}
+/* class for fixing IE bug */
+*.bugfix {
+	height: 0;
+	line-height: 0;
+	font-size: 0;
+	}
+*.button {
+    background-color: #777;
+    display: block;
+    margin: 0px;
+	padding: 0;
+	border: 1px solid;
+    height: 17px;
+	line-height: 15px;
+	text-align: center;
+    font-family: tahoma, verdana, sans-serif;
+    font-size: 11px;
+	}
+a.button:link, a.button:visited {
+	color: #eee;
+	border-color: #aaa #444 #444 #aaa;
+	text-decoration: none;
+	}
+a.button:active	{
+    border-color: #444 #777 #777 #444;
+	}
+a.button:hover	{
+    border-color: #777;
+	}
+*.special_button {
+    background-color: #c44;
+    color: #ccc;
+	display: block;
+    margin: 0px;
+	padding: 0;
+	border: 1px solid;
+    height: 17px;
+	line-height: 15px;
+	text-align: center;
+    font-family: tahoma, verdana, sans-serif;
+    font-size: 11px;
+	}
+a.special_button:link, a.special_button:visited {
+	color: #fee;
+	border-color: #e66 #922 #922 #e66;
+	text-decoration: none;
+	}
+a.special_button:active	{
+    border-color: #922 #c44 #c44 #922;
+	}
+a.special_button:hover	{
+    border-color: #c44;
+	}
+/* style settings for the display area */
+.n_display {
+	background-color: #afc8b8; /* the 'LCD-color' */
+    width: 198px;
+    height: 14px;
+	color: #343;
+	border: 2px solid;
+    border-color: #aaa #ddd #ddd #aaa;
+	margin: 2px 0px 2px 1px;
+    padding: 2px;
+	font-family: courier, monospace;
+    font-size: 12px;
+	}
+.d_display {
+	background-color: #afc8b8; /* the 'LCD-color' */
+    width: 74px;
+    height: 14px;
+	color: #343;
+	border: 2px solid;
+    border-color: #aaa #ddd #ddd #aaa;
+	margin: 2px 0px 0px 1px;
+    padding: 1px;
+	font-family: courier, monospace;
+    font-size: 12px;
+    text-align: center;
+    }
+.t_display {
+	background-color: #afc8b8; /* the 'LCD-color' */
+    width: 74px;
+    height: 14px;
+	color: #343;
+	border: 2px solid;
+    border-color: #aaa #ddd #ddd #aaa;
+	margin: 2px 1px 0px 0px;
+    padding: 1px;
+	font-family: courier, monospace;
+    font-size: 12px;
+    text-align: center;
+    }
+a.carpe {
+    display: block;
+	color: #999; 
+	padding: 0px;
+	margin: 0px;
+	font: 8px #ccc "Gill Sans MT", "Gill Sans", GillSans, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	text-align: center;
+	line-height: 10px;
+	}
+a.carpe:link, a.carpe:visited, a.carpe:active {
+    color: #999; 
+    text-decoration: none;
+    }
+a.carpe:hover {
+    color: #fff;
+    text-decoration: none;
+    }

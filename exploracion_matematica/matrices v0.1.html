@@ -1,0 +1,444 @@
+<html>
+<head>
+
+<script type="text/javascript">
+
+
+
+/* ==============DECLARACION DE MATRICES ============ */
+
+Matriz= new  Array(1,2,1,0,1,2,0,1,0);
+n_matriz=3;
+m_matriz=3;
+
+Matriz_A= new  Array(1,2,1,0,1,2,0,1,0);
+n_A=3;
+m_A=3;
+
+
+Matriz_B= new  Array(-2,1,3,0,0,-2,0,-1,1);
+n_B=3;
+m_B=3;
+
+
+Matriz_C= new  Array();
+Matriz_temporal= new  Array();
+Matriz_de_paso= new  Array();
+
+
+/* =============FIN DE DECLARACION ==========*/
+
+
+flag_de_permutaciones=-1; // El orden de las permutaciones que se han generado
+
+
+permutaciones= new Array();
+permutaciones_temporales=new Array();
+
+signo_de_las_permutaciones= new Array();
+signo_de_las_permutaciones_temporales = new Array();
+
+
+
+function imprimir_matriz(){
+var FILAS=n_matriz;
+var COLUMNAS=m_matriz;
+
+for (i=0;i<FILAS;i++){
+	for (j=0;j<COLUMNAS;j++){
+    document.write(Matriz[i*COLUMNAS+j]+"\t")
+	}
+    document.write("<br>")
+	} 
+
+ document.write("<br>")
+}
+
+
+function imprimir_matriz_A(){
+var FILAS=n_A;
+var COLUMNAS=m_A;
+
+for (i=0;i<FILAS;i++){
+	for (j=0;j<COLUMNAS;j++){
+    document.write(Matriz_A[i*COLUMNAS+j]+"\t")
+	}
+    document.write("<br>")
+	} 
+
+ document.write("<br>")
+}
+
+
+
+function imprimir_matriz_B(){
+var FILAS=n_B;
+var COLUMNAS=m_B;
+
+for (i=0;i<FILAS;i++){
+	for (j=0;j<COLUMNAS;j++){
+    document.write(Matriz_B[i*COLUMNAS+j]+"\t")
+	}
+    document.write("<br>")
+	} 
+
+ document.write("<br>")
+}
+
+
+function imprimir_matriz_C(){
+var FILAS=n_C;
+var COLUMNAS=m_C;
+
+for (i=0;i<FILAS;i++){
+	for (j=0;j<COLUMNAS;j++){
+    document.write(Matriz_C[i*COLUMNAS+j]+"\t")
+	}
+    document.write("<br>")
+	} 
+
+ document.write("<br>")
+}
+
+
+function asignacion_de_la_matriz_temporal()
+{
+var i,j;
+
+
+  for (i=0; i<n_matriz;i++)
+	{
+	for (j=0; j<m_matriz;j++)
+		{
+		Matriz[i*m_matriz+j]= Matriz_temporal[i*m_matriz+j]
+		}
+  	}
+}
+
+
+
+function producto_de_matrices()
+{
+
+if(m_A!= n_B) alert("El número de columnas de A a de ser igual al número de filas de B");	
+else {
+var suma,i,j,r;
+
+	for (i=0; i<n_A;i++)
+	{
+		for (j=0; j<m_B;j++)
+		{
+			suma=0;
+			for (r=0; r<m_A;r++)
+			{
+			suma+= Matriz_A[i*m_A+r]* Matriz_B[r* m_B+j];
+			}
+			Matriz_C[i*m_B+j]=suma;
+		}
+	}
+
+
+n_C=n_A;
+m_C=m_B;
+
+}
+
+}
+
+
+function potencia_de_matriz(k)
+{
+
+if(n_matriz!=m_matriz) alert("La matriz no es cuadrada");
+else
+{
+  var suma,l,i,r,j,n=n_matriz;
+
+  for (l=1;l< k; l++)
+  {	
+
+
+	for (i=0; i<n;i++)
+	{
+		for (j=0; j<n;j++)
+		{
+			suma=0;
+			for (r=0; r<n;r++)
+			{
+			suma+= Matriz[i*n+r]* Matriz[r* n+j];
+			}
+			Matriz_temporal[i*n+j]=suma;
+		}
+	}
+
+
+	asignacion_de_la_matriz_temporal();
+
+
+  }
+
+
+
+}
+}
+
+
+
+
+
+function factorial(n)
+{
+var resultado=1;
+if (n == 0 || n == 1) return resultado ;
+else  for(i=2;i<=n;i++)  resultado *= i; 
+	
+return resultado;
+	
+}
+
+
+function generar_permutaciones(n)
+{
+
+
+if(flag_de_permutaciones!=n)
+{
+
+
+if(n==1) {
+	cantidad_de_permutaciones=1;
+	permutaciones[0]=0;
+	signo_de_las_permutaciones[0]=0;
+	}
+
+if (n==2){
+	cantidad_de_permutaciones=2;
+	permutaciones[0]=0;
+	permutaciones[1]=1;
+	permutaciones[2]=1;
+	permutaciones[3]=0;
+	signo_de_las_permutaciones[0]=0;
+	signo_de_las_permutaciones[1]=1;
+	
+	}
+
+
+if (n>=3)
+  {
+  var i,j,k,t,r,indice=0;
+
+  generar_permutaciones(n-1);
+  
+  for (i=0; i<n; i++)
+	{
+	for(j=0;j<cantidad_de_permutaciones; j++)	
+		{
+			for(k=0;k<n; k++)
+			{	
+			if(k<i)
+			permutaciones_temporales[indice]=permutaciones[j*(n-1)+k];
+			
+			if(k==i)
+			permutaciones_temporales[indice]=n-1;
+			
+			if(k>i)
+			permutaciones_temporales[indice]=permutaciones[j*(n-1)+k-1];
+			
+			indice++;
+			}
+		
+		
+		signo_de_las_permutaciones_temporales[i*cantidad_de_permutaciones+j]=(n-1-i+ signo_de_las_permutaciones[j])%2;
+		}
+	}
+	
+  cantidad_de_permutaciones*=n;
+
+  for(t=0;t<cantidad_de_permutaciones;t++)
+	{
+	
+	for (r=0; r< n;r++) {
+		permutaciones[t*n+r]=permutaciones_temporales[t*n +r];
+		}
+
+	signo_de_las_permutaciones[t]=signo_de_las_permutaciones_temporales[t];
+	}
+
+  }
+
+flag_de_permutaciones=n;
+
+} 		
+}
+
+
+function determinante()
+{
+
+
+if(n_matriz!=m_matriz) alert("La matriz no es cuadrada");
+else{
+
+	var suma=0, n=n_matriz, producto;
+	
+		
+	generar_permutaciones(n);
+	
+	for(i=0;i< cantidad_de_permutaciones;i++)
+	{	
+		
+		producto=1;
+		
+		for(j=0;j< n;j++)
+		{
+		producto*= Matriz[j*n+permutaciones[i*n+j]];
+		}
+				
+		if(signo_de_las_permutaciones[i]==0) suma+= producto;		
+			else suma-= producto;
+		
+	}
+
+    return suma;
+    }
+}
+
+
+
+
+
+function determinante_temporal(n)
+{
+
+var suma=0, producto;
+			
+
+	
+	for(i=0;i< cantidad_de_permutaciones;i++)
+	{	
+		
+		producto=1;
+		
+		for(j=0;j< n;j++)
+		{
+		producto*= Matriz_temporal[j*n+permutaciones[i*n+j]];
+		}
+				
+		if(signo_de_las_permutaciones[i]==0) suma+= producto;		
+			else suma-= producto;
+		
+	}
+
+    return suma;
+
+}
+
+
+function transpuesta()
+{
+
+	
+  for (i=0; i<n_matriz;i++)
+	{
+	for (j=0; j<m_matriz;j++)
+		{
+		
+		Matriz_temporal[j*n_matriz+i]=Matriz[i*m_matriz+j];
+		}
+  	}
+
+variable_de_paso= m_matriz;
+m_matriz= n_matriz;
+n_matriz=variable_de_paso;
+
+asignacion_de_la_matriz_temporal();
+
+
+}
+
+
+
+function matriz_menor(fila,columna)
+{
+
+  for (i=0; i<n_matriz;i++)
+	{
+	for (j=0; j<m_matriz;j++)
+		{
+		if(i>fila && j>columna)
+			Matriz_temporal[(i-1)*(m_matriz-1)+j-1]=Matriz[i*m_matriz+j];
+
+
+		if(i>fila && j<columna)
+			Matriz_temporal[(i-1)*(m_matriz-1)+j]=Matriz[i*m_matriz+j];
+
+		if(i<fila && j>columna)
+			Matriz_temporal[i*(m_matriz-1)+j-1]=Matriz[i*m_matriz+j];
+
+		if(i<fila && j<columna)
+			Matriz_temporal[i*(m_matriz-1)+j]=Matriz[i*m_matriz+j];
+				
+		}
+
+  	}
+
+}
+
+
+function matriz_inversa()
+{
+if(n_matriz!=m_matriz) alert("la matriz no es cuadrada");
+else 
+     if(determinante()==0) alert("la matriz no es invertible");
+else {
+	var n=n_matriz,i,j, determinante_del_menor;
+	generar_permutaciones(n-1);
+	for (i=0;i<n;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+		matriz_menor(i,j);
+		determinante_del_menor=determinante_temporal(n-1);
+		
+		if((i+j)%2==0) 	Matriz_de_paso[i*n+j]= determinante_del_menor;
+			else Matriz_de_paso[i*n+j]= -1*determinante_del_menor;
+		
+		}
+	}
+    
+	for (i=0; i<n;i++)
+	{
+	for (j=0; j<n;j++)
+		{
+		
+		Matriz[j*n+i]=Matriz_de_paso[i*n+j];
+		}
+  	}
+
+
+
+     }
+}
+
+</script>
+
+
+</head>
+
+<body>
+PRODUCTO MATRICIAL DE A POR B<BR><BR>
+
+
+<script>
+
+imprimir_matriz_A();
+imprimir_matriz_B();
+producto_de_matrices();
+imprimir_matriz_C();
+
+
+
+
+</script>
+</body>
+</html>

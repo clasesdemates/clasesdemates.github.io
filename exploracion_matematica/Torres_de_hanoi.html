@@ -1,0 +1,406 @@
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<title>Clases Particulares de Matemáticas</title>
+	<link href="../css/miestilo.css" rel="stylesheet" type="text/css">
+	<link rel="../imagenes/shortcut icon" href="division.ico">
+</head>
+<body>
+
+
+<div id="pagina">
+
+
+<div id="cabecera">
+<h1>Clases particulares de Matemáticas</h1>
+
+</div>
+
+
+
+<div id="barradivisoria"></div>
+
+<div id="pantallacompleta">
+
+<a href="../ciencia_recreativa.html">»Ir atrás</a>
+
+﻿<script>
+/*ESTO DE AQUI SE PUEDE TOCAR*/
+max_elem_por_piramide=5;
+/*FIN*/
+
+Torres_de_hanoi=new Array();
+
+Tamano_de_las_torres= new Array(3);
+
+piezas_del_problema= new Array();
+piezas_de_hanoi_temporales= new Array();
+
+/*---------------------------------------------------*/
+/* TODO ESTO ES PARA LA SECUENCIA DE REPRODUCCION--*/
+/*---------------------------------------------------*/
+
+secuencia= new Array();
+//Esta es la secuencia que soluciona el problema de las torres de hanoi
+
+var Longitud;
+// Longitud de la secuencia
+
+var codigo_de_la_reproduccion;
+
+var contador_de_la_secuencia;
+
+/*---------HASTA AQUI----------*/
+
+
+
+/*---------------------------------------------------*/
+/*--Funciones para solucionar el problema de hanoi---*/
+/*---------------------------------------------------*/
+
+
+function asignar_array(A,B,n)
+{
+for(var i=0; i<=n;i++) A[i]=B[i];
+}
+
+
+function definir_posicion_auxiliar(a,b)
+{
+if(Math.min(a,b)==0 && Math.max(a,b)==1) return 2;
+
+if(Math.min(a,b)==1 && Math.max(a,b)==2) return 0;
+
+if(Math.min(a,b)==0 && Math.max(a,b)==2) return 1;
+
+}
+
+function Hanoi(pos_final,n)
+{
+var pos_inicial= piezas_de_hanoi_temporales[n];
+if(pos_inicial!=pos_final) 
+{
+if(n==0) {
+	
+	secuencia[contador_de_la_secuencia]=pos_inicial;
+	secuencia[contador_de_la_secuencia+1]=pos_final;
+	contador_de_la_secuencia=contador_de_la_secuencia+2;
+	piezas_de_hanoi_temporales[n]=pos_final;
+	}
+else
+	{
+	var pos_aux=definir_posicion_auxiliar(pos_inicial,pos_final);
+
+	Hanoi(pos_aux,n-1);
+	
+	secuencia[contador_de_la_secuencia]=pos_inicial;
+	secuencia[contador_de_la_secuencia+1]=pos_final;
+	contador_de_la_secuencia=contador_de_la_secuencia+2;
+	piezas_de_hanoi_temporales[n]=pos_final;
+	
+	Hanoi(pos_final,n-1);
+	
+	}
+}
+else if(n>0) Hanoi(pos_final,n-1);
+
+
+}
+
+
+/*-----------------FIN---------------*/
+
+
+
+
+function Reproducimos_desde_contador()
+{
+movimiento(secuencia[contador_de_la_secuencia] ,secuencia[contador_de_la_secuencia+1]);
+contador_de_la_secuencia = contador_de_la_secuencia+2;
+if(contador_de_la_secuencia < Longitud) codigo_de_la_reproduccion=setTimeout("Reproducimos_desde_contador();", 1000);
+
+}
+
+
+
+function inicializar_juego()
+{
+
+ document.getElementById("INFO").innerHTML=""; 
+ for(var i= 0; i<max_elem_por_piramide ;i++) piezas_del_problema[i]=0;
+ 
+ 
+ for(var i= 0; i<max_elem_por_piramide ;i++)
+ Torres_de_hanoi[i]=max_elem_por_piramide-i;
+ 
+var Ultima_pos_en_array= 3*max_elem_por_piramide-1
+ for(var i= max_elem_por_piramide; i<=Ultima_pos_en_array;i++)
+Torres_de_hanoi[i]="&nbsp;";
+ 
+ Tamano_de_las_torres[0]=max_elem_por_piramide;
+ Tamano_de_las_torres[1]=0;
+ Tamano_de_las_torres[2]=0;
+ 
+  imprimir_torres_de_hanoi()
+}
+
+
+function actualizar_info( mensage ) {
+document.getElementById("INFO").innerHTML=mensage
+}
+
+
+function movimiento(i,j)
+{
+
+
+var nTORRE_Inicial=Tamano_de_las_torres[i];
+var nTORRE_Final= Tamano_de_las_torres[j];
+Torres_de_hanoi[j*max_elem_por_piramide+nTORRE_Final]=
+Torres_de_hanoi[i*max_elem_por_piramide+nTORRE_Inicial-1];
+
+Torres_de_hanoi[i*max_elem_por_piramide+nTORRE_Inicial-1]=
+"&nbsp;";
+Tamano_de_las_torres[j]++;
+Tamano_de_las_torres[i]--;
+
+var l=0
+while(piezas_del_problema[l]!=i) l++;
+piezas_del_problema[l]=j;
+
+var Letra_de_la_torre_Inicial,Letra_de_la_torre_Final;
+
+switch(i)
+{
+case 0:
+Letra_de_la_torre_Inicial="A";
+break;
+
+case 1:
+Letra_de_la_torre_Inicial="B";
+break;
+
+case 2:
+Letra_de_la_torre_Inicial="C";
+break;
+}
+
+switch(j)
+{
+case 0:
+Letra_de_la_torre_Final="A";
+break;
+
+case 1:
+Letra_de_la_torre_Final="B";
+break;
+
+case 2:
+Letra_de_la_torre_Final="C";
+break;
+}
+
+
+
+actualizar_info("Se ha realizado el movimiento de la torre "+Letra_de_la_torre_Inicial+ " a la torre "+
+Letra_de_la_torre_Final+".");
+   
+  imprimir_torres_de_hanoi();
+
+
+}
+
+
+function movimientoAB()
+{
+var nA= Tamano_de_las_torres[0];
+var nB=Tamano_de_las_torres[1];
+
+if(nA==0 && nB==0) actualizar_info("En las torres indicadas no hay ningún elemento");
+else if (nA==0)  movimiento(1,0);
+else if(nB==0)    movimiento(0,1);
+
+else
+{
+
+if(Torres_de_hanoi[nA-1]>Torres_de_hanoi[max_elem_por_piramide+nB-1])  movimiento(1,0);
+
+ else movimiento(0,1);
+}   
+ 
+
+
+}
+
+
+function movimientoAC()
+{
+var nA= Tamano_de_las_torres[0];
+var nC=Tamano_de_las_torres[2];
+
+if(nA==0 && nC==0) actualizar_info("En las torres indicadas no hay ningún elemento");
+else if (nA==0)  movimiento(2,0);
+else if(nC==0)    movimiento(0,2);
+
+else
+{
+if(Torres_de_hanoi[nA-1]>Torres_de_hanoi[2*max_elem_por_piramide+nC-1])  movimiento(2,0);
+
+ else movimiento(0,2);
+}   
+ 
+
+}
+
+
+
+function movimientoBC()
+{
+
+var nB=Tamano_de_las_torres[1];
+var nC= Tamano_de_las_torres[2];
+
+if(nB==0 && nC==0) actualizar_info("En las torres indicadas no hay ningún elemento");
+else if (nB==0)  movimiento(2,1);
+else if(nC==0)    movimiento(1,2);
+
+else
+{
+if(Torres_de_hanoi[max_elem_por_piramide+nB-1]>Torres_de_hanoi[2*max_elem_por_piramide+nC-1])  movimiento(2,1);
+
+ else movimiento(1,2);
+}   
+
+
+
+}
+
+
+function imprimir_torres_de_hanoi()
+{
+
+codigo="<table align=center cellpadding=40><tr>";
+
+for( var j=0; j<=2; j++)
+{
+codigo+="<td><table  border=1>";
+for (var i=(max_elem_por_piramide-1); i>=0;i--)
+codigo+="<tr><td width=50px align=center>"+Torres_de_hanoi[j*max_elem_por_piramide+i]+"</td></tr>";
+
+codigo+="</td></tr><tr><td width=50px align=center><b>"
+switch(j)
+	{
+	case 0:
+	codigo+="A";
+	break;
+	
+	case 1:
+	codigo+="B";
+	break;
+	
+	case 2:
+	codigo+="C";
+	break;
+	} 
+
+codigo+="</b></td></tr></table></td>";
+}
+
+
+codigo+="</tr></table>";
+
+document.getElementById("Lugar de las torres").innerHTML=codigo;
+
+}
+
+
+function Nuevo_problema(n)
+{
+
+max_elem_por_piramide=n;
+inicializar_juego();
+
+}
+
+function Solucionar()
+{
+var Solucionado=true;
+
+for(var i=0; i<=max_elem_por_piramide-1;i++)
+{
+if(piezas_del_problema[i]!=2) Solucionado=false;
+}
+
+
+asignar_array(piezas_de_hanoi_temporales,piezas_del_problema,max_elem_por_piramide-1);
+contador_de_la_secuencia=0;
+
+Hanoi(2,max_elem_por_piramide-1);
+Longitud= contador_de_la_secuencia;
+contador_de_la_secuencia=0;
+
+if(!Solucionado) setTimeout('Reproducimos_desde_contador();',1000);
+}
+</script>
+
+
+<h3>Las torres de Hanoi</h3>
+
+<table width="855">
+<tr>
+<td width="80%"><div id="Lugar de las torres"></div></td>
+<td width="20%">
+
+
+Elementos por pirámide: 
+<input type="text" value=5 size=3 onchange="n=parseInt(this.value);if(!isNaN(n) && n>0) {clearTimeout(codigo_de_la_reproduccion);Nuevo_problema(n);} else {alert('Hay que introducir un número natural');this.value=max_elem_por_piramide;}">
+<br><br>
+<button onclick="clearTimeout(codigo_de_la_reproduccion); inicializar_juego();">
+Inicializar juego</button><br><br>
+<button onclick="Solucionar();">
+Solucionar el problema</button><br><br>
+<button onclick="clearTimeout(codigo_de_la_reproduccion);">
+Parar de resolver</button>
+
+
+
+</td>
+<tr>
+<td width="80%">
+
+<table border=1 bordercolor=black cellpadding=10>
+<tr><td>
+<b>MOVIMIENTOS:</b>
+<table cellpadding=5>
+<tr><td><button  onclick="movimientoAB()">Torre A - Torre B</button></td>
+<td><button  onclick="movimientoBC()">Torre B - Torre C</button></td>
+<td><button  onclick="movimientoAC()">Torre A - Torre C</button></td>
+</table>
+
+<br>
+<div id="INFO"></div>
+
+</td></tr></table>
+
+</td>
+</tr>
+</table>
+
+
+<script>
+	inicializar_juego();
+</script>
+
+
+
+
+
+</div>
+
+
+<div id="pie_de_pagina"></div>
+
+</div> <!-- este div cierra página -->
+
+</body>
+</html>

@@ -1,0 +1,286 @@
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<title>Clases Particulares de Matemáticas</title>
+	<link href="../css/miestilo.css" rel="stylesheet" type="text/css">
+	<link rel="../imagenes/shortcut icon" href="division.ico">
+</head>
+<body>
+
+
+<div id="pagina">
+
+
+<div id="cabecera">
+<h1>Clases particulares de Matemáticas</h1>
+
+</div>
+
+
+
+<div id="barradivisoria"></div>
+
+<div id="pantallacompleta">
+
+<a href="../ciencia_recreativa.html">»Ir atrás</a>
+
+﻿<script>
+
+function descomposicion_en_primos()
+{
+valor=parseInt(document.descomposicionenprimos.numero.value);
+if(isNaN(valor)) alert("Hay que introducir una cifra"); else 
+if (valor==0) alert("El valor tiene que ser no nulo"); else
+	if ( es_primo(valor)) document.getElementById('Lugar de la descomposicion').innerHTML ="El valor introducido ya es primo"; else 
+	{
+	var msg='<center><font size=5>'+valor+'&nbsp; = &nbsp; </font>';
+	var i=2;
+	if(valor!=Math.abs(valor)) msg+='<font size=5>(-1) por </font>';
+	valor=Math.abs(valor);
+	
+	primer_primo_que_divide=true;
+	
+	do
+	{
+	if(es_primo(i) && (valor %i)==0) 
+	 {
+	 var j=1;
+	 do{j++;}while(valor% Math.pow(i,j)==0)
+	 j--;
+	 if(primer_primo_que_divide)
+	 {
+	 primer_primo_que_divide=false;
+	  	if(j==1) msg+= '<font size=5>'+i+'</font>'; else
+	 	msg+='<font size=5>'+i+'<font size=3><sup>'+j+'</sup></font></font>';
+	 
+	 }else
+	 	{
+	 	if(j==1) msg+='<font size=5>&nbsp; * &nbsp;' + i+'</font>'; else
+	 	msg+='<font size=5>&nbsp; * &nbsp;'+i+'<font size=3><sup>'+j+'</sup></font></font>';
+	 	}
+	 } 
+	i++;
+	}while(2*i<= valor)
+	
+
+	msg+='</center>'
+	
+	document.getElementById('Lugar de la descomposicion').innerHTML =msg;
+
+  }
+  
+  
+
+
+
+}
+
+
+function siguiente_primo()
+{
+valor=parseInt(document.anteriorsiguienteprimo.numero.value);
+if(isNaN(valor)) alert("Hay que introducir un numero entero."); else 
+{
+	 do{
+	 valor++;
+	 }while(!es_primo(valor));
+	 document.anteriorsiguienteprimo.numero.value=valor;
+}
+
+}
+
+
+function anterior_primo()
+{
+valor=parseInt(document.anteriorsiguienteprimo.numero.value);
+if(isNaN(valor)) alert("Hay que introducir un numero entero."); else 
+{
+	 do{
+	 valor--;
+	 }while(!es_primo(valor));
+	 document.anteriorsiguienteprimo.numero.value=valor;
+ 
+}
+
+}
+
+
+
+
+ function es_primo(valor)                
+     { 
+     numero=parseInt(valor)
+     if(isNaN(numero)) return false;
+     else 
+      {    
+      numero= Math.abs(numero);
+      if(numero==1 || numero==2) return true;
+      else if(numero>=2)
+      		{        
+      		var smaller=2;                                        
+              while ((numero % smaller > 0)    
+               && (smaller*smaller <= numero)) 
+                 {             
+                  smaller++;                   
+                 };
+             if(smaller*smaller>numero)  return true;       
+              else return false;               
+         	}                             
+                                        
+     }
+}
+
+function tabla_de_primos()
+{
+var n= parseInt(document.tabladeprimos.numero.value);
+if(isNaN(n)) alert("Hay que introducir un natural."); else
+if(n<=0) alert("Hay que introducir un natural.");
+else
+{
+var cadena="";
+var num_cadena="";
+cadena+="<center><table border=1><tr><td><table cellspacing=15 border=0><tr>";
+var num_filas= (n-(n%10))/10;
+
+for(var i=1;i<=num_filas*10 ; i++) 
+{    num_cadena=""+i;   
+	if (es_primo(i)) cadena+="<td>"+num_cadena + "</td>";
+	else cadena+="<td>"+num_cadena.strike() + "</td>";
+	if(i%10==0) cadena+="</tr><tr>";
+}
+
+for(;i<=n;i++)
+{
+num_cadena=""+i;   
+	if (es_primo(i)) cadena+="<td>"+num_cadena + "</td>";
+	else cadena+="<td>"+num_cadena.strike() + "</td>";
+	
+}
+cadena+="</tr></table></td></tr></table></center>";
+document.getElementById('Lugar de la tabla').innerHTML =cadena;
+
+}
+
+}
+
+
+function tabla_de_distribucion_de_primos()
+{
+var n= parseInt(document.distribuciondeprimos.n.value);
+var elementos_por_fila= parseInt(document.distribuciondeprimos.elementosporfila.value);
+if(isNaN(n)) alert("La cantidad total de filas ha de ser un número natural."); 
+else if(n<=0) alert("La cantidad total de filas ha de ser un número natural.");
+else if(isNaN(elementos_por_fila)) alert("El número de elementos por fila ha de ser natural."); 
+else
+{
+var cadena="";
+var num_cadena="";
+cadena+="<table align=center border=1 bordercolor=black width=80%><tr><td width=40px>0</td>";
+
+
+for(var i=1;i<=(n-1)*elementos_por_fila ; i++) 
+{    num_cadena=""+i;   
+	if (es_primo(i)) cadena+="<td bgcolor=black>&nbsp;</td>";
+	else cadena+="<td bgcolor=white>&nbsp;</td>";
+	if(i%elementos_por_fila==0) cadena+="</tr><tr><td width=40px>"+ (i/elementos_por_fila)+"</td>";
+}
+
+for(;i<=n*elementos_por_fila;i++)
+{
+	num_cadena=""+i;   
+	if (es_primo(i)) cadena+="<td bgcolor=black>&nbsp;</td>";
+	else cadena+="<td bgcolor=white>&nbsp;</td>";
+
+}
+cadena+="</tr></table>";
+document.getElementById('Lugar de la distribucion').innerHTML =cadena;
+
+}
+
+}
+
+</script>
+
+<h2 class="titulo">¡Va de primos!</h2>
+
+<p>Poniendo un número entero y apretando el botón este se descompone en potencias de números primos.</p>
+
+<form name="descomposicionenprimos">
+<input type=text  name="numero"  size=5 >&nbsp;&nbsp;
+<input type="button" onclick="descomposicion_en_primos();" value="Descomponer en números primos">
+</form>
+<div id="Lugar de la descomposicion"></div>
+
+
+<p>Escriba en el siguiente cuadrado un número entero para que apretando el botón 
+correspondiente pueda averiguar el anterior o el siguiente primo:</p>
+
+
+<form name="anteriorsiguienteprimo">
+<table border="1" bordercolor="black" align="center">
+
+<tr>
+<td></td><td bordercolor=white><input type=text  name="numero"  size=5 > 
+</td><td></td>
+</tr>
+
+<tr>
+<td bordercolor=white>
+<input type="button" onclick="anterior_primo();" value="Anterior primo">
+</td>
+<td></td>
+<td bordercolor=white>
+<input type="button" onclick="siguiente_primo();" value="Siguiente primo"> </td>
+</tr>
+
+</table>
+</form>
+
+<p>Si escribe un número natural n mayor o igual que uno le aparecerá una tabla ordenada de todos los números donde las 
+cifras que no sean primas estarán tachadas.</p>
+
+<form name="tabladeprimos">
+<input type=text  name="numero"  size=5 >&nbsp;&nbsp;
+<input type="button" onclick="tabla_de_primos();" value="Crear tabla de primos">
+</form>
+
+<div id="Lugar de la tabla"></div>
+
+
+
+<h3>Facilitación para la búsqueda de patrones en la distribución de primos</h3>
+
+<p>Rellenando las casillas de abajo y apretando el botón se creará una tabla de una cantidad de filas prefija, en la que
+ se irán correspondiendo los números naturales según se vaya avanzando de izquierda a derecha, pasando después a la 
+siguiente fila y así sucesivamente. Se marcarán aquellas casillas que correspondan a un número primo, las que no
+ estén marcadas serán las que no lo sean.</p>
+
+<form name="distribuciondeprimos">
+<table>
+<tr>
+<td>Cantidad total de filas en la tabla:</td>
+<td> <input type=text  name="n"  size=5 ></td>
+</tr>
+<tr>
+<td>Número de elementos por cada fila:</td>
+<td><input type=text  name="elementosporfila"  size=5 ></td>
+</tr>
+</table>
+<br>
+<input type="button" onclick="tabla_de_distribucion_de_primos();" value="Crear esquema de distribución">
+</form>
+
+<div id="Lugar de la distribucion"></div>
+
+
+
+
+</div>
+
+
+<div id="pie_de_pagina"></div>
+
+</div> <!-- este div cierra página -->
+
+</body>
+</html>

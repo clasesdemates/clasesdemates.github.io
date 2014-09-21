@@ -1,0 +1,93 @@
+.enlaces_de_interes dt {	margin-top:16px}.FormularioParaEntrar fieldset {	padding: 17px;	width: 400px;	margin: 120px auto 0 auto;	background-color: #f3f3f3;	border: solid 1px #a1a1a1;	font:80%/1 sans-serif;	}
+.FormularioParaEntrar legend {	padding: 2px 5px;	border: 1px solid	#a1a1a1;	background-color:white;	color: black;	font-weight: normal;	text-align:right;	}
+
+.FormularioParaEntrar label {	margin-right: 5px;	padding-top: 2px;	text-align:right;	}
+.FormularioParaEntrar input {	color: maroon;	border: 1px solid #781351;}
+.FormularioParaEntrar label, .FormularioParaEntrar input{	display: block;	width: 150px;	float: left;	margin-bottom: 3px;}
+.FormularioParaEntrar .submit {	float: none;	margin: 19px auto 0 auto;	padding:4px 7px;	background: #a1a1a1;	border: 1px solid gray;	border-right: 3px solid black;	border-bottom: 2px solid black;	color: white;}
+
+.FormularioParaEntrar br {	clear: left;}
+#tabladeprecios {	margin: 12px auto 0 auto;	border-spacing: 1px;	border-width: 0px;}
+#tabladeprecios thead tr{	background-color: #BAD8F5;}
+
+#tabladeprecios thead th {	font-size: normal;	font-weight: bold;	font-family: arial;	text-align: center;	background-color: #BAD8F5;	width: 165px;	height: 49px;}
+
+#tabladeprecios tbody th, #tabladeprecios tbody td{	text-align: center;	font-family: arial;	font-weight: normal;	font-size: normal;}
+#tabladeprecios tbody tr {	background-color: #EBEBEB;}
+#tabladeprecios tbody .impar{	background-color: #D6D6D6;}
+
+
+.textTail {	font-family:monospace, san-serif; 	font-size: medium; 	font-style: bold; 	color: red;	z-index: 1}
+
+html, body {	margin:0px;	padding:0px;	width:100%;	}
+
+#pagina{		width: 100%;	min-width: 1000px;	background-color: white;}
+#logotipo{	float: right;	background-color: red;	margin-top: -20px;	margin-right: 30px;	border:0px;	padding:0px;}
+#barradivisoria{
+	margin:0px;
+	height:22px;
+	background-color: #53493f;
+	padding-left: 16px;
+	padding-bottom: 2px;
+}
+
+
+
+
+
+#cabecera{	margin:0px;	padding-top:10px;	background: black url('figurasAbstractas.gif') no-repeat 98% center;	height: 46px;	width: 100%;	text-align:center;}
+#cabecera h1{	margin: auto;	color:white;	display:block;	margin-top: 2px;	font-weight: 900;	font-size: 16pt;	font-family: arial;}
+#contenido{	width:80%;	height-min:600px;	margin-left: 198px;
+	padding-left: 21px;	padding-top: 10px;	font-size: 13pt;	font-family: Arial;	word-spacing: 2px;	font-weight:normal;	text-indent: 6px;
+}
+
+#contenido h2{
+	margin-top: 30px;
+	font-size: 16pt
+}
+#menu{	float: left;	width: 200px;	height: 450px;	background: #ece9e2 url("bordeinferiormenu.bmp") repeat-x bottom;}
+#menu ul{	padding: 0;	margin: 0px;	list-style: none;}
+
+#menu li{	border-bottom:1px solid black;}
+
+#menu li a {	display:block;	padding:10px 6px;	text-decoration:none;	text-align:center;	font-size:10pt;	font-family:Arial;	color:black;	font-weight: normal;}
+#menu li a:hover {	color:white;	background-color:Sienna;	font-weight: bold;}
+
+.resaltar {	color: #767676;}#pantallacompleta{	margin-left:19px;	margin-top:24px;	background-color: white;	font-size:12pt;	font-family:arial;	font-weight:normal;	color:black;}
+.fecha {	font-weight: normal;
+	color: rgb(206,200,166);	font-size: normal;	margin: 0px;
+}
+
+ 
+#pie_de_pagina{	width:100%;
+	padding-top: 110px;
+	margin-bottom: 18px;	text-align: center;
+	font-size:10pt;
+	font-style:italic;	font-family:Times New Roman;
+	clear:both;}#horarios{    border-collapse: collapse;	border-width: 0;	border-top: solid 4px #5B2F1A;	border-right: solid 1px #5B2F1A;    border-spacing: 0px;	margin-top: -35px;	margin-left: auto;	margin-right: auto;}#horarios th{text-align: center;width: 60px;border-bottom: solid 1px #5B2F1A;border-left: solid 1px #5B2F1A;background-color: #A0522D;font-size: 11px;padding: 8px 6px;color: #ffdece;font-family: arial}#horarios th.intervalo_horario {padding:0; margin:0;width: auto;background-color: white}#horarios th.intervalo_horario ul{	margin: 0; 	padding: 0;	border: 0;	font: 10px Helvetica, Geneva, sans-serif;}#horarios th.intervalo_horario ul li{	margin: 0; 	padding: 0;	padding-left: 3px;	padding-right: 3px;	border: 0;	border-bottom: 1px solid black;	height: 20px;	line-height: 20px;	text-align: center; 	list-style: none;	color: black;}#horarios td {	border-bottom: solid 1px #5B2F1A;	border-left: solid 1px #5B2F1A;	padding: 0}#horarios ul.barra li.ocupado {	background-color: orange}#horarios ul.barra li.disponible {	background-color: white}#horarios ul.barra {	margin: 0; 	padding: 0;	border: 0;	font: 10px Helvetica, Geneva, sans-serif;		}	#horarios ul.barra li {	margin: 0; 	padding: 0;	border: 0;	width: 100%;	text-align: center; 	list-style: none;	color: #FFF;	font-weight:bold;	}.navigation ul{	margin:0px;	display:block;	list-style:none;}
+.navigation ul li{	font-family: Arial, Helvetica, sans-serif; 	padding-top:20px;	font-size:18px;	font-weight: bold;	display: block;	color:#2d261f;	}
+ 
+.navigation ul ul {	background:none;	padding:0px; 	display:block;	list-style:none;	margin-top: 10px;}
+.navigation ul ul li{	background: url(../inside/images/Bullet.jpg)15px 5px no-repeat;		font-family: Arial, Helvetica, sans-serif; 	font-size: 14px;	font-weight: bold;	color:#600;	padding: 0 0  0 15px;	margin-top: 5px;}
+
+.navigation ul ul ul{	background: none; 	margin-top:10px;	padding:0px; 	display:block;	list-style:none;	margin-left: 10px;	}
+.navigation ul ul ul li{	font-family: Arial, Helvetica, sans-serif; 	font-size:14px;	font-weight: normal;	color: #C0C;	padding-left: 15px;}
+
+.datoDeContacto {
+	font-weight:bold
+}
+
+
+#listado_de_carreras li {
+	list-style-type: none;
+}
+
+
+#listado_de_carreras  a {
+	text-decoration:none;
+}
+
+#listado_de_carreras  a:hover {
+	color: #0066CC;
+	font-weight: bold;
+}
